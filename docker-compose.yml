@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: redciaq_api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://Gabriel:005146250@mongo:27017/RedCiaq?authSource=admin
+      - DB_NAME=RedCiaq
+    restart: always
+
+  mongo:
+    image: mongo:6.0
+    container_name: redciaq_mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=Gabriel
+      - MONGO_INITDB_ROOT_PASSWORD=005146250
+      - MONGO_INITDB_DATABASE=RedCiaq
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:

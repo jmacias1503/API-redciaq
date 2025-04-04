@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Instalar dependencias
-RUN pip install --no-cache-dir --upgrade pip && \
+RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
 # Exponer el puerto donde correrá la API
